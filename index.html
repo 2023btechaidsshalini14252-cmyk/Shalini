@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relay Desk | Helpdesk queue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">r</span><span>relay<span class="brand-dot">.</span></span></div>
+      <div class="workspace-switcher"><span class="avatar avatar-small">P</span><span><strong>Priya's desk</strong><small>IT Operations</small></span><span class="chevron">⌄</span></div>
+      <nav class="nav" aria-label="Primary navigation">
+        <p class="nav-label">Workspace</p>
+        <a class="nav-item active" href="#queue"><span class="nav-icon">▦</span> Queue <span class="nav-count">12</span></a>
+        <a class="nav-item" href="#my-tickets"><span class="nav-icon">◷</span> My tickets <span class="nav-count soft">6</span></a>
+        <a class="nav-item" href="#customers"><span class="nav-icon">♙</span> Customers</a>
+        <p class="nav-label nav-spacer">Manage</p>
+        <a class="nav-item" href="#reports"><span class="nav-icon">▥</span> Reports</a>
+        <a class="nav-item" href="#settings"><span class="nav-icon">⚙</span> Settings</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="tip-card"><span class="tip-icon">✦</span><strong>Queue tip</strong><p>Overdue tickets always rise to the top, then priority.</p></div>
+        <div class="user-row"><span class="avatar">P</span><span><strong>Priya Shah</strong><small>Available</small></span><span class="presence"></span></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="queue">
+      <header class="topbar"><div class="breadcrumbs">Workspace <span>/</span> <strong>Queue</strong></div><div class="top-actions"><button class="icon-button" aria-label="Notifications">♢<i></i></button><button class="help-button">? <span>Help center</span></button><button class="avatar avatar-button" aria-label="Open profile">P</button></div></header>
+      <div class="content-wrap">
+        <section class="page-heading"><div><div class="eyebrow"><span class="live-dot"></span> Monday, October 21, 2024</div><h1>Good morning, Priya.</h1><p>Here is what needs your attention today.</p></div><button class="primary-button" id="newTicket"><span>＋</span> New ticket</button></section>
+
+        <section class="stats-grid" aria-label="Queue overview">
+          <article class="stat-card urgent-stat"><div class="stat-top"><span class="stat-label">Needs attention</span><span class="stat-symbol">!</span></div><strong id="needsAttention">6</strong><p><span class="danger-text">3 overdue</span> need a response</p><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Open queue</span><span class="stat-symbol neutral">↗</span></div><strong id="openCount">12</strong><p><span class="success-text">↓ 12%</span> from last week</p><div class="stat-line blue-line"></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">My tickets</span><span class="stat-symbol neutral">◉</span></div><strong id="myCount">6</strong><p><span class="success-text">4 due today</span> across queue</p><div class="stat-line green-line"></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Avg. first response</span><span class="stat-symbol neutral">◷</span></div><strong>1h 42m</strong><p><span class="success-text">↓ 18m</span> vs. last week</p><div class="stat-line coral-line"></div></article>
+        </section>
+
+        <section class="queue-section">
+          <div class="queue-header"><div><h2>Ticket queue <span class="queue-total" id="queueTotal">24 tickets</span></h2><p>Sorted by urgency and response time</p></div><button class="filter-button" id="filterButton">☷ <span>Filters</span><b id="filterBadge">0</b></button></div>
+          <div class="toolbar"><div class="tabs" role="tablist"><button class="tab active" data-filter="all">All tickets <span>12</span></button><button class="tab" data-filter="overdue">Overdue <span class="red-pill">3</span></button><button class="tab" data-filter="mine">Assigned to me <span>6</span></button></div><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search by customer or ticket..." aria-label="Search by customer or ticket"><kbd>⌘ K</kbd></label></div>
+          <div class="filter-panel" id="filterPanel" hidden><label>Status<select id="statusFilter"><option value="all">All open tickets</option><option value="urgent">Urgent only</option><option value="high">High only</option><option value="normal">Normal only</option></select></label><label>Assignee<select id="assigneeFilter"><option value="all">Anyone</option><option value="Priya Shah">Priya Shah</option><option value="Marcus Lee">Marcus Lee</option></select></label><button id="clearFilters">Clear filters</button></div>
+          <div class="table-wrap"><table><thead><tr><th><input type="checkbox" aria-label="Select all tickets"></th><th>Ticket</th><th>Customer</th><th>Priority</th><th>Response due</th><th>Assignee</th><th></th></tr></thead><tbody id="ticketRows"></tbody></table><div class="empty-state" id="emptyState" hidden><span>⌕</span><strong>No tickets found</strong><p>Try a different search or filter.</p></div></div>
+          <footer class="pagination"><span id="pageLabel">Showing 1-6 of 24 tickets</span><div class="page-controls"><button id="prevPage" aria-label="Previous page">←</button><button class="page-number active">1</button><button class="page-number">2</button><button class="page-number">3</button><button class="page-number">4</button><button id="nextPage" aria-label="Next page">→</button></div></footer>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
